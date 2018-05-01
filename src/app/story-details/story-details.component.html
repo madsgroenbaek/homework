@@ -1,7 +1,8 @@
 <div ng-controller="ExampleController">
     
   <form novalidate class="simple-form" ng-if="story" (keyup)="onKeyUp($event)"
-  ondrop="drop(event)" (ondragover)="allowDrop(event)"
+  ondrop="drop(event)" 
+  ondragover='angular.element(document.getElementById("myContrId")).scope().allowDrop(event)'
   >
   
   >
