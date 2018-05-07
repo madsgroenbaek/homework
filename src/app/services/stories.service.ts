@@ -15,11 +15,6 @@ export class StoriesService {
    }
    private url="https://5vhqqlfyrk.execute-api.us-east-2.amazonaws.com/dev"
    getStories(): Observable<Story[]>{
-    //let heads = new Headers(); 
-    //heads.append('Content-Type','application/json');
-    //var url =
-    //var ret: Story[];
-    // 
     return this.http.get(this.url).map(res => 
       
       JSON.parse( res['body']) as Story[],
@@ -29,13 +24,25 @@ export class StoriesService {
     )
       
    }
+   getStory(id: string): Observable<Story>{
+    var resourcePath=this.url + "/" + id;
+    return this.http.get<Story>(resourcePath);
+      
+   }
 
    postStory()   {
 
     let heads = new HttpHeaders(); 
     heads.append('Content-Type','application/json')
     var body = new Story()
-    body.Name="Øllebrød3 " + new Date().toLocaleTimeString();
+    body.Name="ÅÅllebrød3 " + new Date().toLocaleTimeString();
+    var sub1 = new Story()
+    sub1.Name="Sub 1"
+    var sub2 = new Story()
+    sub2.Name="Sub 2"
+    body.CollectionList=[]
+    body.CollectionList.push(sub1)
+    body.CollectionList.push(sub2)
     var js = JSON.stringify(body)
     console.log(js)
     return this.http.post(this.url,js,{headers:heads})
@@ -45,11 +52,11 @@ export class StoriesService {
    putStory(story: Story){
     let heads = new HttpHeaders(); 
     heads.append('Content-Type','application/json')
-    var body = new Story()
-    body.Name="Nyt Navn er: " + new Date().toLocaleTimeString();
+    // var body = new Story("98649e6b-f8c7-4f3b-a157-9caa4fc8abd2")
+    // body.Name="Nyt Navn: " + new Date().toLocaleTimeString();
     var js = JSON.stringify(story)
-    
-    return this.http.put(this.url,js,{headers:heads}).subscribe(ret =>console.log(ret))
+    console.log(js)
+    return this.http.put(this.url,js,{headers:heads}).subscribe(res=>console.log(res))
    }
    
    private log(message: string) {

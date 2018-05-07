@@ -1,0 +1,12 @@
+::ng-deep .cdk-overlay-container {
+    /* Do you changes here */
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    background-color: gray;
+    z-index: 1000; 
+}
+mat-form-field{
+    background:whitesmoke;
+    font-size: 15px;
+}

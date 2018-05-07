@@ -1,5 +1,6 @@
-<div ng-controller="ExampleController">
-    
+
+<div class="row">
+<div class="column">
   <form novalidate class="simple-form" ng-if="story" (keyup)="onKeyUp($event)"
   ondrop="drop(event)" 
   ondragover='angular.element(document.getElementById("myContrId")).scope().allowDrop(event)'
@@ -7,7 +8,7 @@
   
   >
     <button (click)="onSaveStory()" ><i class="fa fa-upload"></i></button>
-        
+            
       <input type="text" [(ngModel)]="story.Name"  [ngModelOptions]="{standalone: true}" [value]="story.Name"/>
       <!-- <link rel='stylesheet' href='C:\Angular\htest\node_modules\font-awesome\css\font-awesome.min.css'> -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,16 +28,21 @@
 
 <div><span>{{keypresses}}</span></div>
 
-<!-- <i class="fa fa-spinner fa-pulse"></i> -->
-      <!-- <div>{{story.Content}}</div>
-      <div class="app-ngx-editor"></div> -->
-      <!-- <app-ngx-editor  [placeholder]="'Enter text here...'" [spellcheck]="true" ></app-ngx-editor> -->
-    
-    
-    <!-- <input type="button" ng-click="reset()" value="Reset" />
-    <input type="submit" ng-click="update(user)" value="Save" /> -->
-  </form>
+
+</form>
+</div>
+<div class="column">
+  <button (click)="onNewStoryEntry()" ><i class="fa fa-plus-circle"></i></button>
+  <div class="panel-body panel-scroll">
+    <ul >
+      <li *ngFor="let story of story.CollectionList" (click)="select(story)" draggable="true" droppable (onDrop)=onItemDrop($event)>{{story.Name}}
+        
+      </li>
+    </ul>
+  </div>
+</div>
   <!-- <pre>user = {{user | json}}</pre>
   <pre>master = {{master | json}}</pre> -->
-</div>
+  
+  
 

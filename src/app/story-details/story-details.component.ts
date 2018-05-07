@@ -1,7 +1,10 @@
-import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import {MatDialog,MatDialogConfig} from '@angular/material'
 import { StoryDetailsService } from '../services/story-details.service';
 import { Story } from '../story';
 import {Form} from '@angular/forms'
+import {CourseDialogComponent} from './CourseDialogComponent';
+import { ViewContainerRef } from '@angular/core';
 
 
 @Component({
@@ -12,9 +15,12 @@ import {Form} from '@angular/forms'
 })
 export class StoryDetailsComponent implements OnInit {
 
-  constructor(private storyDetailsService: StoryDetailsService) { }
+  constructor(private storyDetailsService: StoryDetailsService,private dialog: MatDialog) { }
   @Input() story: Story;
+  
   keypresses = "";
+  confirmResult = null;
+  promptMessage = '';
   editorConfig = {
     "editable": true,
     "spellcheck": true,
@@ -47,35 +53,53 @@ export class StoryDetailsComponent implements OnInit {
     //this.onSaveStory();
     this.keypresses = this.keypresses+event["key"];
   }
-  allowDrop(event){
-    event.preventDefault()
+  onNewStoryEntry(){
+    this.openDialog()
+    //this.showConfirm()
+    //this.openNewDialog()
+    // var newStoryEntry = new Story;
+    // newStoryEntry.Name="New Name" + new Date().toLocaleTimeString();
+    // if(this.story.CollectionList == null)this.story.CollectionList = [];
+    // this.story.CollectionList.push(newStoryEntry)
+    // var ret =this.storyDetailsService.saveStory(this.story)
+    // console.log(ret)
+  }
+  showConfirm() {
+    
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+        id: 1,
+        title: 'Angular For Beginners',
+        
+    };
+    
+    //this.dialog.open(CourseDialogComponent, dialogConfig);
+    
+    const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+        data => this.insertNewSubStory( data["description"],data["storyType"])
+    );    
+}
+ 
+ 
+  insertNewSubStory(title: string,category:string){
+    var newStoryEntry = new Story;
+    newStoryEntry.Name=title;
+    if(this.story.CollectionList == null)this.story.CollectionList = [];
+    this.story.CollectionList.push(newStoryEntry)
+    var ret =this.storyDetailsService.saveStory(this.story)
+    console.log(ret)
+
   }
 }
 
-// import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
-// import {Story} from '../Story'
-// import {Form} from '@angular/forms'
 
-// @Component({
-//   selector: 'app-story-form',
-//   templateUrl: './story-form.component.html',
-//   styleUrls: ['./story-form.component.css']
-  
-// })
-// export class StoryFormComponent implements OnInit {
-  
-//   @Input() story: Story;
-//   //@Output() valueChange:EventEmitter<Story> = new EventEmitter<Story>()
-
-//   //story: Story;
-  
-//   constructor() {
-    
-//    }
-
-//   ngOnInit() {
-//     //this.story=new Story("ssss","sss","sss","sss")
-//   }
-
-// }
 

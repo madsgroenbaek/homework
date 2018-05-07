@@ -9,6 +9,6 @@ export class StoryDetailsService {
     this.storiesService.getStories()
   }
   saveStory(story: Story){
-    this.storiesService.putStory(story);
+    return this.storiesService.putStory(story);
   }
 }
