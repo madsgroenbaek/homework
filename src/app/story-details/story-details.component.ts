@@ -2,7 +2,7 @@ import { Component, OnInit,Input,Output,EventEmitter, ViewChild, ElementRef } fr
 import {MatDialog,MatDialogConfig} from '@angular/material'
 import { StoryDetailsService } from '../services/story-details.service';
 import { Story } from '../story';
-import {Form} from '@angular/forms'
+import {Form, FormGroup} from '@angular/forms'
 import {CourseDialogComponent} from './CourseDialogComponent';
 import { ViewContainerRef } from '@angular/core';
 
@@ -85,14 +85,18 @@ export class StoryDetailsComponent implements OnInit {
     const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-        data => this.insertNewSubStory( data["description"],data["storyType"])
+        data => this.insertNewSubStory( data as FormGroup)
     );    
 }
  
  
-  insertNewSubStory(title: string,category:string){
+  insertNewSubStory(inpform: FormGroup){
+    if(inpform==null)return;
+    
+    
     var newStoryEntry = new Story;
-    newStoryEntry.Name=title;
+    newStoryEntry.Name=inpform.value["description"]
+    newStoryEntry.CollectionType=inpform.value["collectiontype"]
     if(this.story.CollectionList == null)this.story.CollectionList = [];
     this.story.CollectionList.push(newStoryEntry)
     var ret =this.storyDetailsService.saveStory(this.story)

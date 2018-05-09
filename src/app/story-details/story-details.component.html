@@ -3,7 +3,7 @@
 <div class="column">
   <form novalidate class="simple-form" ng-if="story" (keyup)="onKeyUp($event)"
   ondrop="drop(event)" 
-  ondragover='angular.element(document.getElementById("myContrId")).scope().allowDrop(event)'
+  
   >
   
   >
@@ -19,7 +19,7 @@
       [(ngModel)]="story.Content" 
       [ngModelOptions]="{standalone: true}"
       style="font-size: 15px"
-      (ondragover)="allowDrop(event)"
+      
       >
       
       </app-ngx-editor>

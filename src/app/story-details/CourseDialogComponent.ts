@@ -12,9 +12,10 @@ import {FormBuilder} from '@angular/forms'
 })
 export class CourseDialogComponent implements OnInit {
 
-    form: FormGroup;
+    form: FormGroup ;
     description:string;
     storyType:string;
+    title:string;
     options = ["News","Face","Tweet"];
     constructor(
         private fb: FormBuilder,
@@ -23,25 +24,25 @@ export class CourseDialogComponent implements OnInit {
 
         this.description = data.description;
         this.storyType = data.storyType;
+        this.title = data.title;
+        
     }
 
     ngOnInit() {
         this.form = this.fb.group({
-            description: [this.description, []],
-            storyType:[this.storyType,"TV"]
-
+            description: this.description,
+            storyType: this.storyType,
+            title: this.title
         }
     );
     }
 
-    save() {
-        this.dialogRef.close(this.form.value);
+    submit(form) {
+        this.dialogRef.close(form);
     }
 
     close() {
         this.dialogRef.close();
     }
-    changePosition() {
-        this.dialogRef.updatePosition({ top: '50px', left: '50px' });
-    }
+    
 }

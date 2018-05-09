@@ -5,7 +5,8 @@ export class Story{
     Id: string
     Name: string;
     Content: string;
-    CreatedTimestamp: String
+    CreatedTimestamp: string
     CollectionList: Story[]
+    CollectionType: string;
     
 }
