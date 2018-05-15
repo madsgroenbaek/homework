@@ -16,7 +16,7 @@ export class CourseDialogComponent implements OnInit {
     description:string;
     storyType:string;
     title:string;
-    options = ["News","Face","Tweet"];
+    options = ["TV News","Facebook","Tweet"];
     constructor(
         private fb: FormBuilder,
         private dialogRef: MatDialogRef<CourseDialogComponent>,

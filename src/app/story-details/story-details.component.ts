@@ -30,7 +30,7 @@ export class StoryDetailsComponent implements OnInit {
     "minWidth": "0",
     "translate": "yes",
     "enableToolbar": true,
-    "showToolbar": true,
+    "showToolbar": false,
     "placeholder": "Enter text here...",
     "imageEndPoint": "",
     "toolbar": [
@@ -76,7 +76,7 @@ export class StoryDetailsComponent implements OnInit {
 
     dialogConfig.data = {
         id: 1,
-        title: 'Angular For Beginners',
+        title: 'New Chapter',
         
     };
     

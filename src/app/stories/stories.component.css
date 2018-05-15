@@ -1,3 +1,5 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 
 
 .conditionalScroll{
@@ -5,15 +7,21 @@
     height: 100%; /*change to your liking*/
     overflow: scroll;
 }
-.form-group {
+/* .form-group {
     height: 10px !important;
     max-height: 10px !important;
     font-size: 10px;
-}
+} */
 .column {
     float: left;
-    width: 33.33%;
-    background-color: rgb(212, 212, 212)
+}
+
+.left, .right {
+    width: 25%;
+}
+
+.middle {
+    width: 50%;
 }
 
 
@@ -26,39 +34,61 @@
 
 
 
-.panel-body{
-    background-color: darkgrey;
-    overflow:scroll;
-    height:100vh;
 
+.primary-color {
+    color: #3F51B5!important;
+  }
+.accent-color {
+    color: #FF4081!important;
+  }
+.background-primary-color {
+    background-color: #3F51B5!important;
+  }
+.background-accent-color {
+    background-color: #FF4081!important;
+  }
+.white-text {
+    color: #FFF!important;
 }
 
-.panes-separator {
+/* .panes-separator {
     width: 2%;
     background: red;
     position: relative;
     cursor: col-resize;
-}
+} */
 
-li{
-    background: darkgrey;
-    border-style: solid;
-    border-width: thin;
+mat-list-item{
+    
+    
+    
     color: whitesmoke;
-    border:solid black;
-    border-width: 1px;
+    border-bottom: 1px solid red;
     text-align: left;
     text-indent: 10px;
     cursor: pointer;
     font-size: 15px;
     margin-right: 20px;
     list-style-type: none;  
-   }
 
-   li:hover{
+}
+
+   mat-list-item:hover{
+       border-bottom: 1px solid blue;
        background: white;
-       color: black;
-       left: 10px;
+       color: blue;
+       -webkit-text-fill-color: blue;
+       left: 20px;
        list-style-type: square type;
        
    }
+   mat-list-item:selected {
+    color: white;
+    -webkit-box-shadow:inset 0px 0px 0px 25px #b0b0b0;
+    -moz-box-shadow:inset 0px 0px 0px 25px #b0b0b0;
+    box-shadow:inset 10px 0px 0px 25px #b0b0b0;
+    }
+    .list .mat-list .mat-list-item.mat-multi-line .mat-list-item-content{
+        padding-top: 10;
+        padding-bottom: 10px;
+    }

@@ -3,11 +3,16 @@
           <form  [formGroup]="form" >
           <div class="pane panel-primary">
               <div class="panel-body panel-scroll">
-                <ul >
+                  <mat-list >
+                      <mat-list-item *ngFor="let story of stories | async" (click)="select(story)" draggable="true" droppable (onDrop)=onItemDrop($event)>{{story.Name}}</mat-list-item>
+                      
+                  </mat-list>
+
+                <!-- <ul >
                   <li *ngFor="let story of stories | async" (click)="select(story)" draggable="true" droppable (onDrop)=onItemDrop($event)>{{story.Name}}
                     
                   </li>
-                </ul>
+                </ul> -->
               </div>
         </div>
       </form>

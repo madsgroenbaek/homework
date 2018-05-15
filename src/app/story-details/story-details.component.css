@@ -33,22 +33,10 @@
 
 
 
-.panel-body{
-  background-color: darkgrey;
-  overflow:scroll;
-  height:100vh;
 
-}
-
-.panes-separator {
-  width: 2%;
-  background: red;
-  position: relative;
-  cursor: col-resize;
-}
 
 li{
-  background: darkgrey;
+  
   border-style: solid;
   border-width: thin;
   color: whitesmoke;

@@ -2,9 +2,10 @@
         <h1 mat-dialog-title>{{title}}</h1>
         <mat-dialog-content>
           <mat-form-field>
-            <input matInput formControlName="description" placeholder="Enter Story Name">
+            <input matInput formControlName="description" placeholder="Chapter name">
           </mat-form-field>
         </mat-dialog-content>
+        
         <mat-dialog-content>
           <mat-select placeholder="Publish Type" formControlName="storyType">
             <mat-option *ngFor="let option of options" [value]="option">
